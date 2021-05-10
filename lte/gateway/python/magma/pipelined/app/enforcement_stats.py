@@ -376,8 +376,8 @@ class EnforcementStatsController(PolicyMixin, RestartMixin, MagmaController):
                     self.unhandled_stats_msgs.append(stats_msgs)
                     return
 
-        # Append any records which we couldn't send to session manager earlier
-        #delta_usage = _merge_usage_maps(delta_usage, self.failed_usage)
+        # TODO this is because we have tests that check this. rm this
+        self.total_usage = current_usage
 
         # Send report even if usage is empty. Sessiond uses empty reports to
         # recognize when flows have ended
@@ -507,9 +507,9 @@ class EnforcementStatsController(PolicyMixin, RestartMixin, MagmaController):
                                   record.rule_id, record.rule_version)
             except MagmaOFError as e:
                 self.logger.error(
-                    'Failed to delete rule %s for subscriber %s '
-                    '(version: %s): %s', stat_rule_id,
-                    stat_sid, rule_version, e)
+                    'Failed to delete rule %s for subscriber %s (teid: %s, '
+                    'version: %s): %s', record.rule_id, record.teid,
+                    record.sid, record.rule_version, e)
 
 
     def _old_records(self, records):
