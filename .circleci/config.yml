@@ -6,7 +6,9 @@ aliases:
   - &only_master
     filters:
       branches:
-        only: master
+        only:
+          - master
+          - test_merged_flrate
   - &only_release
     filters:
       branches:
@@ -17,7 +19,6 @@ aliases:
         only:
           - master
           - develop
-          - test_merged_flrate
   - &lte_build_verify
     paths: "orc8r lte"
   - &c_cpp_build_verify

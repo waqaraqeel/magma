@@ -278,6 +278,9 @@ func (tr *TestRunner) GetPolicyUsage() (RecordByIMSI, error) {
 	if err != nil {
 		return recordsBySubID, err
 	}
+	for _, value := range recordsBySubID {
+		fmt.Printf("- %v\n", value)
+	}
 	for _, record := range table.Records {
 		fmt.Printf("Record %v\n", record)
 		_, exists := recordsBySubID[record.Sid]
