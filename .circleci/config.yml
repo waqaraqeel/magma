@@ -6,7 +6,9 @@ aliases:
   - &only_master
     filters:
       branches:
-        only: master
+        only:
+          - master
+          - flat_rate_testing_ci
   - &only_release
     filters:
       branches:
